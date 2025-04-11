@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import javafx.animation.FadeTransition;
 import javafx.util.Duration;
 import java.io.IOException;
+import java.util.Scanner;
 
 
 public class DB_Application extends Application {

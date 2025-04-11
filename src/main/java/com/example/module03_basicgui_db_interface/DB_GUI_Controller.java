@@ -21,13 +21,9 @@ import java.util.ResourceBundle;
 
 public class DB_GUI_Controller implements Initializable {
 
-    private final ObservableList<Person> data =
-            FXCollections.observableArrayList(
-                    new Person(1, "Jacob", "Smith", "CPIS", "CS"),
-                    new Person(2, "Jacob2", "Smith1", "CPIS1", "CS")
+    ConnDbOps cdbop = new ConnDbOps();
 
-            );
-
+    private final ObservableList<Person> data = FXCollections.observableArrayList(cdbop.listAllUsers());
 
     @FXML
     TextField first_name, last_name, department, major;
@@ -44,6 +40,7 @@ public class DB_GUI_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        cdbop.connectToDatabase();
         tv_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tv_fn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tv_ln.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -66,6 +63,8 @@ public class DB_GUI_Controller implements Initializable {
                 department.getText(),
                 major.getText()
         ));
+
+
     }
 
     @FXML
